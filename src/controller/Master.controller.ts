@@ -22,8 +22,7 @@ export default class Master extends BaseController {
 		const component = (this.getOwnerComponent() as Component);
 		this.eEquipmentState = component.eEquipmentSate;
 
-		this.eEquipmentState.getEquipmentByID("1000000333");
-		debugger;
+		void this.eEquipmentState.getEquipmentByID("1000000333");
 		
 	}
 

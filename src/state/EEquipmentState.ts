@@ -13,6 +13,7 @@ type equipmentManData = {
  */
 export default class EEquipmentState extends BaseState {
     protected data: equipmentManData;
+
     constructor(service: EEquipmentService) {
         super();
         this.service = service;
@@ -21,18 +22,19 @@ export default class EEquipmentState extends BaseState {
         }
     }
 
-    public async getEquipmentByID(id:string): Promise<EQ> {
+    public async getEquipmentByID(id:string): Promise<Equipment> {
         try { 
             // sap.ui.getCore().getMessageManager().removeAllMessages();         
-            const wo = await this.getService().getEquipmentByID(id)
-            void this.setEquipment(wo);
+            const equipmentoData = await this.getService().getEquipmentByID(id);
+            void this.setEquipment(equipmentoData);
+            return this.data.equipment;
         } catch (error) {
-            throw error;
+            // throw error;
         } 
     }
 
-    private setEquipment(equipment: EQUIPMENTType) {
-        this.getData().equipment = new Equipment(equipment);       
+    private setEquipment(equipmentoData: EQUIPMENTType) {
+        this.getData().equipment = new Equipment(equipmentoData);       
     
         this.updateModel();
     }

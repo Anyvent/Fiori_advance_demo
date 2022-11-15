@@ -74,7 +74,9 @@ export default class Component extends UIComponent {
 
         this.eEquipmentService = new EEquipmentService(this.getModel() as ODataModelV4);
         this.eEquipmentSate = new EEquipmentState(this.eEquipmentService);
-        this.setModel(this.eEquipmentSate.getModel(), "eEquipMan");
+        
+		
+		this.setModel(this.eEquipmentSate.getModel(), "eEquipMan");
 
 		this.setModel(models.createDeviceModel(), "device");
 		this.setModel(new JSONModel(), "appView");
