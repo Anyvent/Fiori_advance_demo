@@ -29,7 +29,7 @@ type ui5Response = {
 };
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class ErrorHandler extends UI5Object {
 	private resourceBundle: ResourceBundle;

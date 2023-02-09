@@ -9,12 +9,20 @@ type association = {
 };
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.model
+ * @namespace be.thevaluechain.fioriadvanced.model
  */
 export default abstract class BaseObject extends Object {
     private busy = false;
-    constructor() {
+    constructor(data?: any) {
         super();
+
+        //Attempt to copy the oData values to the object
+        if (data) {
+            for (let [key, value] of Object.entries(data)) {
+                this[key] = data[key];
+            }
+        }
+
         this.busy = false;
     }
 

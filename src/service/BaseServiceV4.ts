@@ -2,9 +2,9 @@ import Object from "sap/ui/base/Object";
 import ODataModel from "sap/ui/model/odata/v4/ODataModel";
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.service
+ * @namespace be.thevaluechain.fioriadvanced.service
  */
-export default class BaseServiceV4 extends Object {
+export default class BaseService extends Object {
     protected model: ODataModel;
 
     constructor(model: ODataModel) {

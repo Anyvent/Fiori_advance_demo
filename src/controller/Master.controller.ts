@@ -12,7 +12,7 @@ import Sorter from "sap/ui/model/Sorter";
 import EEquipmentState from "../state/EEquipmentState";
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class Master extends BaseController {
 	private descendingSort = false;

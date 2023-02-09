@@ -9,8 +9,10 @@ import UI5Event from "sap/ui/base/Event";
 import View from "sap/ui/core/mvc/View";
 import ErrorHandler from "./controller/ErrorHandler";
 import EEquipmentState from "./state/EEquipmentState";
-import EEquipmentService from "./service/EEquipmentService";
+import MainService from "./service/";
 import ODataModelV4 from "sap/ui/model/odata/v4/ODataModel";
+import ODataModelV2 from "sap/ui/model/odata/v2/ODataModel";
+
 
 type routeParameters = {
 	arguments: {
@@ -26,6 +28,7 @@ type componentData = {
 type routeInfo = {
 	name:string;
 };
+
 export type UIState = {
 	"layout": string;
 	"maxColumnsCount": number;
@@ -56,13 +59,13 @@ export type UIState = {
 }
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments
+ * @namespace be.thevaluechain.fioriadvanced
  */
 export default class Component extends UIComponent {
 	private contentDensityClass: string | undefined;
 	private errorHandler: ErrorHandler;
 	public eEquipmentSate:EEquipmentState;   
-	public eEquipmentService:EEquipmentService;   
+	public MainService:MainService;   
 
 	public static metadata = {
 		manifest: "json"
@@ -72,12 +75,16 @@ export default class Component extends UIComponent {
 		// this.errorHandler = new ErrorHandler(this);
 		super.init();
 
-        this.eEquipmentService = new EEquipmentService(this.getModel() as ODataModelV4);
-        this.eEquipmentSate = new EEquipmentState(this.eEquipmentService);
+        
+        // this.MainService = new MainService(this.getModel() as ODataModelV4);
+		this.MainService = new MainService(this.getModel() as ODataModelV2);
+        this.eEquipmentSate = new EEquipmentState(this.MainService);
+		
+ 
+
         
 		
 		this.setModel(this.eEquipmentSate.getModel(), "eEquipMan");
-
 		this.setModel(models.createDeviceModel(), "device");
 		this.setModel(new JSONModel(), "appView");
 		this.getRouter().attachBeforeRouteMatched((event: UI5Event) => this.onBeforeRouteMatched(event), this)

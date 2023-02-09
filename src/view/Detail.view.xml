@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.eliagroup.pm.pmeequipments.controller.Detail"
+<mvc:View controllerName="be.thevaluechain.fioriadvanced.controller.Detail"
 	xmlns="sap.m"
 	xmlns:t="sap.ui.table"
 	xmlns:f="sap.f"

@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="com.eliagroup.pm.pmeequipments.controller.DetailObjectNotFound"
+	controllerName="be.thevaluechain.fioriadvanced.controller.DetailObjectNotFound"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 

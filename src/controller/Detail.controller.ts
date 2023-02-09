@@ -6,7 +6,7 @@ import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import {inputParameters} from "./App.controller";
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class Detail extends BaseController {
 	private id: string;

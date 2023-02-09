@@ -3,7 +3,7 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 import BaseController from "./BaseController";
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class NotFound extends BaseController{
 	public onInit():void{

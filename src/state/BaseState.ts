@@ -14,7 +14,7 @@ type MatchingObject = {
 };
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.state
+ * @namespace be.thevaluechain.fioriadvanced.state
  */
 export default abstract class BaseState extends Object {
     protected service: BaseServiceV4 | BaseServiceV2;
@@ -62,4 +62,15 @@ export default abstract class BaseState extends Object {
             return index == 0 ? word.toLowerCase() : word.toUpperCase();
         }).replace(/\s+/g, '');
     }
+
+    protected formatDate(date: Date) {
+        if (date instanceof Date) {
+            let oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+                pattern: "yyyy-MM-dd"
+            });
+            date = oDateFormat.format(date);
+        }
+        return date;
+    }
+    
 }

@@ -11,8 +11,10 @@ server:
       configuration:
         baseUri: "https://erp-dev.belgrid.net:443/sap"
         strictSSL: false
-        username: SP0007
-        password: Fle99400891!223
+        # username: SP0007
+        # password: Fle99400891!223
+        username: CS0013
+        password: Tvc2023AZE!
         excludePatterns:
         - "/local/**"
     - name: fiori-tools-appreload

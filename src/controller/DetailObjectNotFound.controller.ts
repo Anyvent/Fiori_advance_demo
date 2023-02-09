@@ -1,7 +1,7 @@
 import BaseController from "./BaseController";
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class DetailObjectNotFound extends BaseController {
 }

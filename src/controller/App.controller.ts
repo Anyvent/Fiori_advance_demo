@@ -8,7 +8,7 @@ export type inputParameters = {
 };
 
 /**
- * @namespace com.eliagroup.pm.pmeequipments.controller
+ * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class App extends BaseController {
 	private currentRouteName: string;

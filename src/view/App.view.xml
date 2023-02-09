@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="com.eliagroup.pm.pmeequipments.controller.App"
+	controllerName="be.thevaluechain.fioriadvanced.controller.App"
 	displayBlock="true"
 	height="100%"
 	xmlns="sap.m"
