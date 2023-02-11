@@ -6,7 +6,8 @@ import BaseServiceV4 from "../service/BaseServiceV4";
 import BaseServiceV2 from "../service/BaseServiceV2";
 import { ValueState } from "sap/ui/core/library";
 import Message from "sap/ui/core/message/Message";
-import ODataModel from "sap/ui/model/odata/v4/ODataModel";
+// import ODataModel from "sap/ui/model/odata/v4/ODataModel";
+import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 
 type MatchingObject = {
     path: string;

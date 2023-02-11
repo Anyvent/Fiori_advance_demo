@@ -8,7 +8,7 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 import UI5Event from "sap/ui/base/Event";
 import View from "sap/ui/core/mvc/View";
 import ErrorHandler from "./controller/ErrorHandler";
-import EEquipmentState from "./state/EEquipmentState";
+import State from "./state/State";
 import MainService from "./service/";
 import ODataModelV4 from "sap/ui/model/odata/v4/ODataModel";
 import ODataModelV2 from "sap/ui/model/odata/v2/ODataModel";
@@ -64,7 +64,7 @@ export type UIState = {
 export default class Component extends UIComponent {
 	private contentDensityClass: string | undefined;
 	private errorHandler: ErrorHandler;
-	public eEquipmentSate:EEquipmentState;   
+	public state:State;   
 	public MainService:MainService;   
 
 	public static metadata = {
@@ -78,13 +78,10 @@ export default class Component extends UIComponent {
         
         // this.MainService = new MainService(this.getModel() as ODataModelV4);
 		this.MainService = new MainService(this.getModel() as ODataModelV2);
-        this.eEquipmentSate = new EEquipmentState(this.MainService);
-		
- 
+        this.state = new State(this.MainService);
+		this.setModel(this.state.getModel(), "state");
 
-        
-		
-		this.setModel(this.eEquipmentSate.getModel(), "eEquipMan");
+
 		this.setModel(models.createDeviceModel(), "device");
 		this.setModel(new JSONModel(), "appView");
 		this.getRouter().attachBeforeRouteMatched((event: UI5Event) => this.onBeforeRouteMatched(event), this)

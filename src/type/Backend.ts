@@ -4,7 +4,8 @@ export type SkillEntitySet = { results: Array<SkillEntity> };
 
 export interface SkillEntity {
     SkillId: number,
-    description: string
+    description: string,
+    score: number
 }
 
 export interface PersonEnity {

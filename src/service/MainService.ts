@@ -1,6 +1,7 @@
 // import BaseService from "./BaseServiceV4";
+//import ODataModel from "sap/ui/model/odata/v4/ODataModel";
 import BaseService from "./BaseServiceV2";
-import ODataModel from "sap/ui/model/odata/v4/ODataModel";
+import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Filter from "sap/ui/model/Filter";
 import { PersonEnity, PersonEntitySet, SkillEntity, SkillEntitySet } from "../type/Backend";
 

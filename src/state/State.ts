@@ -3,7 +3,7 @@ import MainService from "../service/MainService";
 import { PersonEnity } from "../type/Backend";
 import Equipment from "../model/Person";
 
-// import ODataModel from "sap/ui/model/odata/v4/ODataModel";
+
 type equipmentManData = {
     equipment: Equipment
 }
@@ -11,7 +11,7 @@ type equipmentManData = {
 /**
  * @namespace be.thevaluechain.fioriadvanced.state
  */
-export default class EEquipmentState extends BaseState {
+export default class State extends BaseState {
     protected data: equipmentManData;
 
     constructor(service: MainService) {
@@ -22,10 +22,10 @@ export default class EEquipmentState extends BaseState {
         }
     }
 
-    public async getEquipmentByID(id:string): Promise<Equipment> {
+    public async getPersonById(id:string): Promise<Equipment> {
         try { 
             // sap.ui.getCore().getMessageManager().removeAllMessages();         
-            const equipmentoData = await this.getService().getEquipmentByID(id);
+            const equipmentoData = await this.getService().getPersonById(id);
             void this.setEquipment(equipmentoData);
             return this.data.equipment;
         } catch (error) {

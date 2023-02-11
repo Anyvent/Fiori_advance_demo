@@ -17,7 +17,7 @@
 		</f:title>
 		<f:content>
 
-		<Text text="{eEquipMan>/equipment/Equipment}"/>
+		<Text text="{state>/equipment/Equipment}"/>
 
 		</f:content>
 	</f:DynamicPage>

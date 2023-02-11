@@ -10,19 +10,20 @@ import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import Sorter from "sap/ui/model/Sorter";
 import EEquipmentState from "../state/EEquipmentState";
+import State from "../state/State";
 
 /**
  * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class Master extends BaseController {
 	private descendingSort = false;
-	private eEquipmentState: EEquipmentState;
+	private state: State;
 
 	public onInit(): void {
 		const component = (this.getOwnerComponent() as Component);
-		this.eEquipmentState = component.eEquipmentSate;
+		this.state = component.state;
 
-		void this.eEquipmentState.getEquipmentByID("1000000333");
+		void this.state.getEquipmentByID("1000000333");
 		
 	}
 
