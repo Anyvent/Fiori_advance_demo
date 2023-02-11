@@ -1,5 +1,5 @@
 import UIComponent from "sap/ui/core/UIComponent";
-import models from "./model/models";
+import deviceModel from "./core/DeviceModel";
 import { support } from "sap/ui/Device";
 import FlexibleColumnLayoutSemanticHelper from "sap/f/FlexibleColumnLayoutSemanticHelper";
 import { LayoutType } from "sap/f/library";
@@ -9,7 +9,7 @@ import UI5Event from "sap/ui/base/Event";
 import View from "sap/ui/core/mvc/View";
 import ErrorHandler from "./controller/ErrorHandler";
 import State from "./state/State";
-import MainService from "./service/";
+import Service from "./service/Service";
 import ODataModelV4 from "sap/ui/model/odata/v4/ODataModel";
 import ODataModelV2 from "sap/ui/model/odata/v2/ODataModel";
 
@@ -65,7 +65,7 @@ export default class Component extends UIComponent {
 	private contentDensityClass: string | undefined;
 	private errorHandler: ErrorHandler;
 	public state:State;   
-	public MainService:MainService;   
+	public service:Service;   
 
 	public static metadata = {
 		manifest: "json"
@@ -76,13 +76,13 @@ export default class Component extends UIComponent {
 		super.init();
 
         
-        // this.MainService = new MainService(this.getModel() as ODataModelV4);
-		this.MainService = new MainService(this.getModel() as ODataModelV2);
-        this.state = new State(this.MainService);
+        // this.service = new service(this.getModel() as ODataModelV4);
+		this.service = new Service(this.getModel() as ODataModelV2);
+        this.state = new State(this.service);
 		this.setModel(this.state.getModel(), "state");
 
 
-		this.setModel(models.createDeviceModel(), "device");
+		this.setModel(deviceModel.createDeviceModel(), "device");
 		this.setModel(new JSONModel(), "appView");
 		this.getRouter().attachBeforeRouteMatched((event: UI5Event) => this.onBeforeRouteMatched(event), this)
 		this.getRouter().initialize();

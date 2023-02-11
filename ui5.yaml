@@ -1,6 +1,6 @@
 specVersion: "2.0"
 metadata:
-  name: com.eliagroup.pm.pmeequipments
+  name: be.thevaluechain.fioriadvanced
 type: application
 #ui5Theme: sap_fiori_3
 server:
@@ -9,12 +9,13 @@ server:
       afterMiddleware: compression
       mountPath: /sap
       configuration:
-        baseUri: "https://erp-dev.belgrid.net:443/sap"
+        # baseUri: "https://erp-dev.belgrid.net:443/sap"
+        baseUri: https://saptsd.system.loc:443/sap
         strictSSL: false
         # username: SP0007
         # password: Fle99400891!223
         username: CS0013
-        password: Tvc2023AZE!
+        password: Tvc2022aze
         excludePatterns:
         - "/local/**"
     - name: fiori-tools-appreload
@@ -22,10 +23,3 @@ server:
       configuration:
         port: 35729
         path: webapp
-    - name: fiori-tools-servestatic
-      afterMiddleware: compression
-      configuration:
-        paths:
-          - path: /resources/be/elia/bc/zbc_elia_lib
-            src: C:\Users\rw0002\libraries\bc-elia-lib-main
-            fallthrough: false 

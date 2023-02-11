@@ -1,9 +1,9 @@
 {
-    "name": "@local/EEquipments",
+    "name": "fioridemoadvanced",
     "private": true,
     "version": "1.0.0",
     "description": "UI5 Application: EEquipments",
-    "author": "Stijn Puttemans",
+    "author": "Christophe Swolfs",
     "license": "Apache-2.0",
     "keywords": [
         "ui5",

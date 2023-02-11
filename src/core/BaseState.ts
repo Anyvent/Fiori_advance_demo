@@ -1,13 +1,14 @@
 import Object from "sap/ui/base/Object";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import Log, { Level } from "sap/base/Log";
-import BaseObject from "../model/BaseObject";
-import BaseServiceV4 from "../service/BaseServiceV4";
-import BaseServiceV2 from "../service/BaseServiceV2";
+import BaseObject from "./BaseObject";
+import BaseServiceV4 from "./BaseServiceV4";
+import BaseServiceV2 from "./BaseServiceV2";
 import { ValueState } from "sap/ui/core/library";
 import Message from "sap/ui/core/message/Message";
 // import ODataModel from "sap/ui/model/odata/v4/ODataModel";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
+import Service from "../service/Service";
 
 type MatchingObject = {
     path: string;
@@ -15,7 +16,7 @@ type MatchingObject = {
 };
 
 /**
- * @namespace be.thevaluechain.fioriadvanced.state
+ * @namespace be.thevaluechain.fioriadvanced.core
  */
 export default abstract class BaseState extends Object {
     protected service: BaseServiceV4 | BaseServiceV2;
@@ -39,8 +40,9 @@ export default abstract class BaseState extends Object {
             this.model.refresh(hardRefresh ? true : false);
         }
     }
-    protected getService(): BaseServiceV4 | BaseServiceV2 {
-        return this.service;
+    // protected getService(): BaseServiceV4 | BaseServiceV2 {
+    protected getService(): Service {    
+        return (this.service) as Service;
     }
     protected getData(): unknown {//Record<string, BaseObject | Array<BaseObject>> {
         return this.data;

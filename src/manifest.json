@@ -12,10 +12,10 @@
 		"resources": "resources.json",
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata4/sap/zpm_sb_eequipment/srvd/sap/zpm_sd_eequipment/0001/",
+				"uri": "/sap/opu/odata/sap/ZUI_CS_C_FIORIDEMOADVANCED/",
 				"type": "OData",
 				"settings": {
-					"odataVersion": "4.0",
+					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				}
 			}

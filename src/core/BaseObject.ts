@@ -1,4 +1,4 @@
-import Object from "sap/ui/base/Object";
+import UI5BaseObject from "sap/ui/base/Object";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import capitalize from "sap/base/strings/capitalize";
 
@@ -9,17 +9,21 @@ type association = {
 };
 
 /**
- * @namespace be.thevaluechain.fioriadvanced.model
+ * @namespace be.thevaluechain.fioriadvanced.core
  */
-export default abstract class BaseObject extends Object {
+export default abstract class BaseObject extends UI5BaseObject {
     private busy = false;
     constructor(data?: any) {
         super();
 
         //Attempt to copy the oData values to the object
         if (data) {
-            for (let [key, value] of Object.entries(data)) {
-                this[key] = data[key];
+            //@ts-ignore
+            for (const key of Object.keys(data)) {
+                if (!this.containsSpecialChars(key)) {
+                    //@ts-ignore
+                    this[key] = data[key];
+                }
             }
         }
 
@@ -56,6 +60,10 @@ export default abstract class BaseObject extends Object {
         });
     }
 
+    public containsSpecialChars(str: string): boolean {
+        const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        return specialChars.test(str);
+    }
 
     //abstract getEntityName(): string;
     //abstract getKeys(): unknown;

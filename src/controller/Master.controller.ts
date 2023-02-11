@@ -19,11 +19,13 @@ export default class Master extends BaseController {
 	private descendingSort = false;
 	private state: State;
 
-	public onInit(): void {
+	public async onInit(): Promise<void> {
 		const component = (this.getOwnerComponent() as Component);
 		this.state = component.state;
 
-		void this.state.getEquipmentByID("1000000333");
+		let person = await this.state.getPersonById("db42861d-e85a-1eed-aac1-a05b984d8ea2");
+
+		debugger;
 		
 	}
 

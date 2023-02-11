@@ -1,6 +1,6 @@
 {
   "generator-ui5-ts-app-fcl": {
-    "application": "pmeequipments",
+    "application": "fioriadvanced",
     "namespace": "com.eliagroup.pm",
     "endpoint": "https://services.odata.org/V2/OData/OData.svc/",
     "entity": "Categories",
@@ -12,8 +12,8 @@
     "author": "Robbe Wuyts",
     "tstypes": "@sapui5/ts-types-esm",
     "tstypesVersion": "1.90.0",
-    "appId": "com.eliagroup.pm.pmeequipments",
-    "appURI": "com/eliagroup/pm/pmeequipments",
+    "appId": "be.thevaluechain.fioriadvanced",
+    "appURI": "com/eliagroup/pm/fioriadvanced",
     "origin": "https://services.odata.org",
     "path": "/V2/OData/OData.svc/",
     "pathPrefix": "/V2",

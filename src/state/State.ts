@@ -1,45 +1,42 @@
-import BaseState from "./BaseState";
-import MainService from "../service/MainService";
+import BaseState from "../core/BaseState";
+import Service from "../service/Service";
 import { PersonEnity } from "../type/Backend";
-import Equipment from "../model/Person";
+import Person from "../model/Person";
 
 
-type equipmentManData = {
-    equipment: Equipment
+type stateData = {
+    person: Person
 }
 
 /**
  * @namespace be.thevaluechain.fioriadvanced.state
  */
 export default class State extends BaseState {
-    protected data: equipmentManData;
+    protected data: stateData;
 
-    constructor(service: MainService) {
+    constructor(service: Service) {
         super();
         this.service = service;
         this.data = {
-            equipment: new Equipment()
+            person: new Person()
         }
     }
 
-    public async getPersonById(id:string): Promise<Equipment> {
-        try { 
-            // sap.ui.getCore().getMessageManager().removeAllMessages();         
-            const equipmentoData = await this.getService().getPersonById(id);
-            void this.setEquipment(equipmentoData);
-            return this.data.equipment;
-        } catch (error) {
-            // throw error;
-        } 
-    }
 
-    private setEquipment(equipmentoData: EQUIPMENTType) {
-        this.getData().equipment = new Equipment(equipmentoData);       
-    
+
+    public async getPersonById(id: string): Promise<Person> {
+        const personData = await this.getService().getPersonById(id);
+        this.getData().person = new Person(personData.data);
         this.updateModel();
+        return this.getData().person;
     }
 
-    public getData(): equipmentManData {
+    private setPerson(equipmentoData: Person) {
+        this.getData().person = new Person(equipmentoData);
+
+    }
+
+    public getData(): stateData {
         return this.data;
     }
 

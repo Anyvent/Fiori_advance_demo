@@ -1,6 +1,6 @@
 specVersion: "2.0"
 metadata:
-  name: com.eliagroup.pm.pmeequipments
+  name: be.thevaluechain.fioriadvanced
 type: application
 framework:
   name: SAPUI5

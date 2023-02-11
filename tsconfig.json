@@ -18,7 +18,7 @@
             "./node_modules/@sapui5/ts-types-esm"
         ],
         "paths": {
-            "com/eliagroup/pm/pmeequipments/*": [
+            "com/eliagroup/pm/fioriadvanced/*": [
                 "./src/*"
             ]
         }

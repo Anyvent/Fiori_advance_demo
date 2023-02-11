@@ -1,6 +1,6 @@
 // import BaseService from "./BaseServiceV4";
 //import ODataModel from "sap/ui/model/odata/v4/ODataModel";
-import BaseService from "./BaseServiceV2";
+import BaseService from "../core/BaseServiceV2";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Filter from "sap/ui/model/Filter";
 import { PersonEnity, PersonEntitySet, SkillEntity, SkillEntitySet } from "../type/Backend";
@@ -9,7 +9,7 @@ import { PersonEnity, PersonEntitySet, SkillEntity, SkillEntitySet } from "../ty
  * @namespace be.thevaluechain.fioriadvanced.service
  */
 
-export default class MainService extends BaseService {
+export default class Service extends BaseService {
     constructor(model: ODataModel) {
         super(model);
     }
@@ -33,8 +33,8 @@ export default class MainService extends BaseService {
         return this.odata("/Person").get<PersonEntitySet>({ filters: filters });
     }
 
-    public getPersonById(id: number, expanded: boolean = true) {
-        const odataPath = this.model.createKey("/Person", { id: id });
+    public getPersonById(id: string, expanded: boolean = false) {
+        const odataPath = this.model.createKey("/Person", { PersonId: id });
         if (!expanded) {
             return this.odata(odataPath).get<PersonEnity>();
         } else {
