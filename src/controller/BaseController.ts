@@ -9,7 +9,7 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 /**
  * @namespace be.thevaluechain.fioriadvanced.controller
  */
-export default class BaseController extends Controller {	
+export default class BaseController extends Controller {
 	/**
 	 * Convenience method for accessing the router in every controller of the application.
 	 * @public
@@ -18,6 +18,7 @@ export default class BaseController extends Controller {
 	public getRouter(): Router {
 		return (this.getOwnerComponent() as UIComponent).getRouter();
 	}
+
 
 	/**
 	 * Convenience method for getting the view model by name in every controller of the application.
@@ -28,6 +29,7 @@ export default class BaseController extends Controller {
 	public getModel(name?: string): Model {
 		return this.getView().getModel(name);
 	}
+
 
 	/**
 	 * Convenience method for setting the view model in every controller of the application.
@@ -62,7 +64,20 @@ export default class BaseController extends Controller {
 			// eslint-disable-next-line
 			history.go(-1);
 		} else {
-			this.getRouter().navTo("master", {},{}, true);
+			this.getRouter().navTo("master", {}, {}, true);
 		}
 	}
+
+
+	///Fixes for Typescript
+	//Some methods are not recognized, so we declare them again and forwar the call via super
+	//=======================================================================================
+
+	/**
+	 * @returns  {sap.ui.core.UIComponent} Component.js
+	 */
+	getOwnerComponent(): UIComponent {
+		return super.getOwnerComponent();
+	}
+
 }

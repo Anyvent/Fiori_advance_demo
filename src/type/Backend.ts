@@ -14,7 +14,7 @@ export interface PersonEnity {
     FirstName: string,
     LastName: string,
     Company: string,
-    Birthdate: Date,
+    BirthDate: Date,
     skills: Array<SkillEntity>
 }
 

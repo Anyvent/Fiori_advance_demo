@@ -5,7 +5,7 @@ import Person from "../model/Person";
 
 
 type stateData = {
-    person: Person
+    Person: Person
 }
 
 /**
@@ -18,7 +18,7 @@ export default class State extends BaseState {
         super();
         this.service = service;
         this.data = {
-            person: new Person()
+            Person: new Person()
         }
     }
 
@@ -26,13 +26,13 @@ export default class State extends BaseState {
 
     public async getPersonById(id: string): Promise<Person> {
         const personData = await this.getService().getPersonById(id);
-        this.getData().person = new Person(personData.data);
+        this.getData().Person = new Person(personData.data);
         this.updateModel();
-        return this.getData().person;
+        return this.getData().Person;
     }
 
     private setPerson(equipmentoData: Person) {
-        this.getData().person = new Person(equipmentoData);
+        this.getData().Person = new Person(equipmentoData);
 
     }
 

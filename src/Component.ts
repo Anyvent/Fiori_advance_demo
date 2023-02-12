@@ -12,6 +12,7 @@ import State from "./state/State";
 import Service from "./service/Service";
 import ODataModelV4 from "sap/ui/model/odata/v4/ODataModel";
 import ODataModelV2 from "sap/ui/model/odata/v2/ODataModel";
+import Model from "sap/ui/Model";
 
 
 type routeParameters = {
@@ -71,6 +72,8 @@ export default class Component extends UIComponent {
 		manifest: "json"
 	};
 
+	
+
 	public init(): void {
 		// this.errorHandler = new ErrorHandler(this);
 		super.init();
@@ -87,6 +90,8 @@ export default class Component extends UIComponent {
 		this.getRouter().attachBeforeRouteMatched((event: UI5Event) => this.onBeforeRouteMatched(event), this)
 		this.getRouter().initialize();
 	}
+	
+
 
 	public destroy(): void {
 		this.getRouter().detachBeforeRouteMatched((event: UI5Event) => this.onBeforeRouteMatched(event), this);
@@ -145,4 +150,35 @@ export default class Component extends UIComponent {
 			resolve(FCL);
 		});
 	}
+
+
+
+
+	///Fixes for Typescript
+	//Some methods are not recognized, so we declare them again and forwar the call via super
+	//=======================================================================================
+
+
+	/**
+	 * Sets or unsets a model for the given model name for this ManagedObject.
+	 * @param model Model to be set or null or undefined
+	 * @param modelName the name of the model or undefined
+	 */
+	setModel(model: Model, modelName: string) {
+		super.setModel(model, modelName);
+	}
+
+	/**
+	 * Get the model to be used for data bindings with the given model name.
+	 * @param modelName name of the model to be retrieved
+	 * @returns {sap.ui.model.Model}
+	 */
+	getModel(modelName?: string):Model {
+		return super.getModel(modelName);
+	}
+
+
+	// getRouter():Model {
+	// 	return super.getRouter();
+	// }
 }

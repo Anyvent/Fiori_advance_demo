@@ -35,6 +35,6 @@ export default class Person extends BaseObject implements PersonEnity {
     FirstName: string;
     LastName: string;
     Company: string;
-    Birthdate: Date;
+    BirthDate: Date;
     skills: SkillEntity[];
 }

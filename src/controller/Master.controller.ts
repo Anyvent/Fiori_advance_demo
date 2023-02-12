@@ -23,9 +23,9 @@ export default class Master extends BaseController {
 		const component = (this.getOwnerComponent() as Component);
 		this.state = component.state;
 
+
 		let person = await this.state.getPersonById("db42861d-e85a-1eed-aac1-a05b984d8ea2");
 
-		debugger;
 		
 	}
 
