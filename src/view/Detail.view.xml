@@ -7,23 +7,23 @@
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
 	<f:DynamicPage id="detailPage" showFooter="{comp>/detailEditMode}"
-			stickySubheaderProvider="iconTabBar"
-			class="sapUiNoContentPadding" 
-			busy="{detailView>/busy}"
-			busyIndicatorDelay="{detailView>/delay}">
+		stickySubheaderProvider="iconTabBar"
+		class="sapUiNoContentPadding"
+		busy="{state>/detailView/busy}"
+		busyIndicatorDelay="{state>/detailView/delay}">
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="{ID}" level="H2"/>
+					<Title text="{ID}" level="H2" />
 				</f:heading>
 				<f:expandedContent>
-					<Label text="{ID}"/>
+					<Label text="{ID}" />
 				</f:expandedContent>
 				<f:snappedContent>
-					<Label text="{ID}"/>
+					<Label text="{ID}" />
 				</f:snappedContent>
 				<f:snappedTitleOnMobile>
-					<Title text="{ID}"/>
+					<Title text="{ID}" />
 				</f:snappedTitleOnMobile>
 				<f:navigationActions>
 					<OverflowToolbarButton
@@ -31,25 +31,26 @@
 						icon="sap-icon://full-screen"
 						press=".handleFullScreen"
 						tooltip="{i18n>fullscreen}"
-						visible="{= ${appView>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+						visible="{= ${appView>/actionButtonsInfo/midColumn/fullScreen} !== null }" />
 					<OverflowToolbarButton
 						type="Transparent"
 						icon="sap-icon://exit-full-screen"
 						press=".handleExitFullScreen"
 						tooltip="{i18n>exitFullscreen}"
-						visible="{= ${appView>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+						visible="{= ${appView>/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
 					<OverflowToolbarButton
 						type="Transparent"
 						icon="sap-icon://decline"
 						press=".handleClose"
 						tooltip="{i18n>close}"
-						visible="{= ${appView>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
-				</f:navigationActions> 
+						visible="{= ${appView>/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+				</f:navigationActions>
 			</f:DynamicPageTitle>
 		</f:title>
 		<f:header>
 			<f:DynamicPageHeader pinnable="true">
-				<ObjectAttribute title="Other field" text="{path:'ID',formatter: '.formatter.formatValue'}"/>
+				<ObjectAttribute title="Other field"
+					text="{path:'ID',formatter: '.formatter.formatValue'}" />
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
@@ -59,7 +60,39 @@
 				class="sapUiResponsiveContentPadding">
 				<items>
 					<IconTabFilter text="Tab 1" key="tab1">
-						<Text text="Add some content..."></Text>
+						<!-- <Text text="Add some content..."></Text> -->
+						<!-- Actual content of the page -->
+						<VBox>
+							<!-- via Custom model -->
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout"
+								title="Personal Info via cutom model"
+								labelSpanL="3" adjustLabelSpan="false" emptySpanL="4" columnsL="1"
+								singleContainerFullSize="false">
+								<form:content>
+									<Label text="First name" />
+									<Input value="{state>/Person/FirstName}" />
+									<Label text="Last name" />
+									<Input value="{state>/Person/LastName}" />
+									<Label text="Company" />
+									<Input value="{state>/Person/Company}" />
+								</form:content>
+							</form:SimpleForm>
+
+							<!-- via odatamodel -->
+							<!-- <form:SimpleForm editable="true" layout="ResponsiveGridLayout"
+								title="Personal Info via oData"
+								labelSpanL="3" adjustLabelSpan="false" emptySpanL="4" columnsL="1"
+								singleContainerFullSize="false">
+								<form:content>
+									<Label text="First name" />
+									<Input value="{FirstName}" />
+									<Label text="Last name" />
+									<Input value="{LastName}" />
+									<Label text="Company" />
+									<Input value="{Company}" />
+								</form:content>
+							</form:SimpleForm> -->
+						</VBox>
 					</IconTabFilter>
 					<IconTabFilter text="Tab 2" key="tab2">
 						<Text text="Whatever you like"></Text>
@@ -67,13 +100,14 @@
 				</items>
 			</IconTabBar>
 		</f:content>
-			<f:footer>
+		<f:footer>
 			<OverflowToolbar>
-				<Button icon="sap-icon://alert" text="{=${message>/}.length}" visible="{=${message>/}.length > 0}"
+				<Button icon="sap-icon://alert" text="{=${message>/}.length}"
+					visible="{=${message>/}.length > 0}"
 					type="Emphasized" press=".onMessagePopoverPress">
 				</Button>
-				<ToolbarSpacer/>
-			</OverflowToolbar>			
+				<ToolbarSpacer />
+			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
 </mvc:View>

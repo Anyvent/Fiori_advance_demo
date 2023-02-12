@@ -13,18 +13,29 @@
 				<f:heading>
 					<Title text="{i18n>appTitle}" level="H2" />
 				</f:heading>
+				<f:actions>
+					<Button
+					text="New"
+					type="Emphasized"
+					press="onCreateNew"/>
+				</f:actions>
 			</f:DynamicPageTitle>
 		</f:title>
 		<f:content>
 
-			
+
+
+				
+					
 				<List items="{/Person}">
-					<StandardListItem title="{FirstName}"></StandardListItem>
+					<ObjectListItem
+						type="Navigation"
+						press=".onListItemPress"
+						title="{FirstName}"
+						>
+					</ObjectListItem>
 				</List>
 
-				<Text text="Selectd person: {state>/Person/FirstName}" />
-
-			</VBox>
 		</f:content>
 	</f:DynamicPage>
 </mvc:View>
