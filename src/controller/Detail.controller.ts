@@ -1,52 +1,58 @@
 import BaseController from "./BaseController";
 import JSONModel from "sap/ui/model/json/JSONModel";
-import formatter from "../model/formatter";
+import formatter from "../core/formatter";
 import UI5Event from "sap/ui/base/Event";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
-import {inputParameters} from "./App.controller";
+import { inputParameters } from "./App.controller";
+import State from "../state/State";
+import Component from "../Component";
 
 /**
  * @namespace be.thevaluechain.fioriadvanced.controller
  */
 export default class Detail extends BaseController {
-	private id: string;
 	private formatter = formatter;
-	public onInit(): void {
-		const viewModel = new JSONModel({
-			busy : false,
-			delay:0
-		});
-		this.setModel(viewModel, "detailView");
+	private state: State;
 
-		this.getRouter().getRoute("detail").attachPatternMatched((event:UI5Event)=>this.onObjectMatched(event), this);
+	public onInit(): void {
+		const component = (this.getOwnerComponent() as Component);
+		this.state = component.state;
+
+		//Enable navigation to the detail page
+		this.getRouter().getRoute("detail").attachPatternMatched((event: UI5Event) => this.onObjectMatched(event), this);
 	}
 
 	private onObjectMatched(event: UI5Event): void {
-		const viewModel = (this.getModel("detailView") as JSONModel);
+		//Navigation entry point
+		let id:string = (event.getParameter("arguments") as inputParameters).id || this.id || "0";
+		void (this.getModel() as ODataModel).metadataLoaded().then(() => {
 
-		this.id = (event.getParameter("arguments") as inputParameters).id || this.id || "0";
+			// Binding to oDataModel
+			// const path = (this.getModel() as ODataModel).createKey("/Person", {
+			// 	PersonId: id
+			// });
+			// this.getView().bindElement({
+			// 	path: path,
+			// 	events: {
+			// 		change: () => this.onBindingChange(),
+			// 		dataRequested: () => {
+			// 			this.state.setDetailScreenBusy(true)
+			// 		},
+			// 		dataReceived: () => {
+			// 			this.state.setDetailScreenBusy(false)
+			// 		}
+			// 	}
+			// });
 
-		void (this.getModel() as ODataModel).metadataLoaded().then( ()=> {
-
-			const path = (this.getModel() as ODataModel).createKey("/Categories",{
-				ID:this.id
-			});
-
-			this.getView().bindElement({
-				path: path,
-				events:{
-					change : ()=>this.onBindingChange(),
-					dataRequested : ()=>{
-						viewModel.setProperty("/busy", true);
-					},
-					dataReceived: function () {
-						viewModel.setProperty("/busy", false);
-					}
-				}
-			});
+			//Binding to Custom Model
+			let person = this.state.getPersonById(id);
 
 		});
 	}
+
+
+
+
 
 	private onBindingChange() {
 		const elementBinding = this.getView().getElementBinding();
@@ -55,7 +61,7 @@ export default class Detail extends BaseController {
 			void this.getRouter().getTargets().display("detailObjectNotFound");
 		}
 	}
-	
+
 	public onCloseDetailPress(): void {
 		(this.getModel("appView") as JSONModel).setProperty("/actionButtonsInfo/midColumn/fullScreen", false);
 		this.getRouter().navTo("master");
