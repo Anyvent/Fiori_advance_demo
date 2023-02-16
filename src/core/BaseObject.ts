@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import UI5BaseObject from "sap/ui/base/Object";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import capitalize from "sap/base/strings/capitalize";
@@ -77,11 +71,20 @@ export default abstract class BaseObject extends UI5BaseObject {
         }).replace(/\s+/g, '');
     }
 
-    protected camelizeProperties(data: any): any {
-        const camelizedData: any = {};
+    // protected camelizeProperties(data: any): any {
+    //     const camelizedData: any = {};
+    //     for (const key of Object.keys(data)) {
+    //         const newKey: string = this.camelize(key);
+    //         camelizedData[newKey] = data[key];
+    //     }
+    //     return camelizedData;
+    // }
+
+    camelizeProperties<T extends Record<string, unknown>, J extends Record<string, unknown>>(data: T): J {
+        let camelizedData: J = {} as J;
         for (const key of Object.keys(data)) {
             const newKey: string = this.camelize(key);
-            camelizedData[newKey] = data[key];
+            camelizedData = Object.assign(camelizedData, { [newKey]: data[key] })
         }
         return camelizedData;
     }

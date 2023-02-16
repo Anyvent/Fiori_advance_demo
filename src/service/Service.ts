@@ -1,6 +1,6 @@
 // import BaseService from "./BaseServiceV4";
 //import ODataModel from "sap/ui/model/odata/v4/ODataModel";
-import BaseService from "../core/BaseServiceV2";
+import BaseService, { Parameters } from "../core/BaseServiceV2";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Filter from "sap/ui/model/Filter";
 import { PersonEnity, PersonEntitySet, SkillEntity, SkillEntitySet } from "../type/Backend";
@@ -35,10 +35,18 @@ export default class Service extends BaseService {
 
     public getPersonById(id: string, expanded: boolean = false) {
         const odataPath = this.model.createKey("/Person", { PersonId: id });
+        let parameters: Parameters<PersonEnity> = {};
+        
         if (!expanded) {
-            return this.odata(odataPath).get<PersonEnity>();
+            parameters = {};
+            
         } else {
-            return this.odata(odataPath).get<PersonEnity>({ urlParameters: { "$expand": "to_Skills" } });
+            parameters = { urlParameters: { "$expand": "to_Skills" } };
         }
+
+        let oDataPerson = this.odata(odataPath).get(parameters);
+        const personEntity: PersonEnity = this.camelizeProperties(oDataPerson);
+        return personEntity
+
     }
 }

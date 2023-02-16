@@ -9,7 +9,7 @@ import Sorter from "sap/ui/model/Sorter";
  * ===============================================================
  */
  type odataMethods = "read" | "create" | "update" | "remove";
- type parameters<T> = {
+ export type Parameters<T> = {
      context?: Record<string, unknown>;
      urlParameters?: Record<string, string>;
      filters?: Filter[];
@@ -51,9 +51,9 @@ import Sorter from "sap/ui/model/Sorter";
      }
      public odata(url: string) {
          const core = {
-             ajax: <T>(type: odataMethods, url: string, parameters: parameters<T>, data?: T): Promise<response<T>> => {
+             ajax: <T>(type: odataMethods, url: string, parameters: Parameters<T>, data?: T): Promise<response<T>> => {
                  const promise = new Promise<response<T>>((resolve, reject) => {
-                     let params: parameters<T>={};
+                     let params: Parameters<T>={};
                      if (parameters) {
                          params = parameters;
                      }
@@ -77,10 +77,10 @@ import Sorter from "sap/ui/model/Sorter";
              }
          };
          return {
-             get: <T>(params?: parameters<T>): Promise<response<T>> => core.ajax('read', url, params),
-             post: <T>(data: T, params?: parameters<T>): Promise<response<T>> => core.ajax('create', url, params, data),
-             put: <T>(data: T, params?: parameters<T>): Promise<response<T>> => core.ajax('update', url, params, data),
-             delete: <T>(params?: parameters<T>): Promise<response<T>> => core.ajax('remove', url, params)
+             get: <T>(params?: Parameters<T>): Promise<response<T>> => core.ajax('read', url, params),
+             post: <T>(data: T, params?: Parameters<T>): Promise<response<T>> => core.ajax('create', url, params, data),
+             put: <T>(data: T, params?: Parameters<T>): Promise<response<T>> => core.ajax('update', url, params, data),
+             delete: <T>(params?: Parameters<T>): Promise<response<T>> => core.ajax('remove', url, params)
          };
      }
  }
