@@ -33,7 +33,9 @@ export default class Service extends BaseService {
         return this.odata("/Person").get<PersonEntitySet>({ filters: filters });
     }
 
-    public async getPersonById(id: string, expanded: boolean = false) {
+ 
+    
+    public async getPersonById(id: string, expanded: boolean = false):Promise<PersonEnity> {
         const odataPath = this.model.createKey("/Person", { PersonId: id });
         let parameters: Parameters<PersonEnity> = {};
         
@@ -41,7 +43,7 @@ export default class Service extends BaseService {
             parameters = { urlParameters: { "$expand": "to_Skills" } };
         }
 
-        let oDataPerson = await this.odata(odataPath).get(parameters);
+        const oDataPerson = await this.odata(odataPath).get(parameters);
         const personEntity: PersonEnity = this.camelizeProperties(oDataPerson);
         return personEntity;
     }
