@@ -1,4 +1,4 @@
-import Object from "./BaseObject";
+import BaseObject from "./BaseObject";
 import Filter from "sap/ui/model/Filter";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Sorter from "sap/ui/model/Sorter";
@@ -35,7 +35,7 @@ import Sorter from "sap/ui/model/Sorter";
  /**
  * @namespace be.thevaluechain.fioriadvanced.core
  */
- export default class BaseService extends Object {
+ export default class BaseService extends BaseObject {
      protected model: ODataModel;
      constructor(model: ODataModel) {
          super();

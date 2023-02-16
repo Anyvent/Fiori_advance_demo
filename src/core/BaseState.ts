@@ -17,7 +17,7 @@ type MatchingObject = {
 /**
  * @namespace be.thevaluechain.fioriadvanced.core
  */
-export default abstract class BaseState extends Object {
+export default abstract class BaseState extends BaseObject {
     protected service: BaseServiceV4 | BaseServiceV2;
     protected data: any;//Record<string, BaseObject | Array<BaseObject>>;
     private model: JSONModel;
