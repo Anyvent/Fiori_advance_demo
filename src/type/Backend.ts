@@ -7,3 +7,14 @@ export interface SkillEntity {
     description: string,
     score: number
 }
+
+export interface PersonEnity {
+    PersonId: number,
+    SkillId: number,
+    FirstName: string,
+    LastName: string,
+    Company: string,
+    BirthDate: Date,
+    skills: Array<SkillEntity>
+}
+

@@ -1,4 +1,4 @@
-import Object from "sap/ui/base/Object";
+import Object from "./BaseObject";
 import Filter from "sap/ui/model/Filter";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Sorter from "sap/ui/model/Sorter";

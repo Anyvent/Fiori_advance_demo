@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import UI5BaseObject from "sap/ui/base/Object";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import capitalize from "sap/base/strings/capitalize";
@@ -63,6 +69,21 @@ export default abstract class BaseObject extends UI5BaseObject {
     public containsSpecialChars(str: string): boolean {
         const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         return specialChars.test(str);
+    }
+
+    protected camelize(str: string):string{
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index == 0 ? word.toLowerCase() : word.toUpperCase();
+        }).replace(/\s+/g, '');
+    }
+
+    protected camelizeProperties(data: any): any {
+        const camelizedData: any = {};
+        for (const key of Object.keys(data)) {
+            const newKey: string = this.camelize(key);
+            camelizedData[newKey] = data[key];
+        }
+        return camelizedData;
     }
 
     //abstract getEntityName(): string;

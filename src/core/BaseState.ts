@@ -1,4 +1,3 @@
-import Object from "sap/ui/base/Object";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import Log, { Level } from "sap/base/Log";
 import BaseObject from "./BaseObject";
