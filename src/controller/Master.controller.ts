@@ -1,7 +1,8 @@
 import BaseController from "./BaseController";
 import { system } from "sap/ui/Device";
 import UI5Event from "sap/ui/base/Event";
-import Component, { UIState } from "../Component";
+import AppComponent, { UIState } from "../Component";
+// import Component from "sap/ui/core/Component";
 import List from "sap/m/List";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import ODataListBinding from "sap/ui/model/odata/v2/ODataListBinding";
@@ -9,7 +10,6 @@ import ObjectListItem from "sap/m/ObjectListItem";
 import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import Sorter from "sap/ui/model/Sorter";
-import EEquipmentState from "../state/EEquipmentState";
 import State from "../state/State";
 
 /**
@@ -20,7 +20,7 @@ export default class Master extends BaseController {
 	private state: State;
 
 	public async onInit(): Promise<void> {
-		const component = (this.getOwnerComponent() as Component);
+		const component = this.getComponent() ;
 		this.state = component.state;
 
 
@@ -41,13 +41,13 @@ export default class Master extends BaseController {
 	}
 
 	private async onListItemPress(event: UI5Event) {
-		const id = ((event.getSource() as ObjectListItem).getBindingContext().getProperty("PersonId") as string),
+		const id = ((event.getSource() as ObjectListItem).getBindingContext().getProperty("PersonId") as string);
 		this.navigateToDetail(id);
 	}
 
 	private async navigateToDetail(id: string) {
 		const replace = !system.phone;
-		const helper = await (this.getOwnerComponent() as Component).getHelper(),
+		const helper = await (this.getOwnerComponent() as unknown as AppComponent).getHelper();
 		const nextUIState = (helper.getNextUIState(1) as UIState);
 		//navigate
 		this.getRouter().navTo("detail", { id: id, layout: nextUIState.layout }, {}, replace);

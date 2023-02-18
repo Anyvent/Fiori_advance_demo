@@ -77,15 +77,25 @@ export default abstract class BaseObject extends UI5BaseObject {
         }).replace(/\s+/g, '');
     }
 
-    protected camelizeProperties(data: any): any {
-        const camelizedData: any = {};
+    // protected camelizeProperties(data: any): any {
+    //     const camelizedData: any = {};
+    //     for (const key of Object.keys(data)) {
+    //         const newKey: string = this.camelize(key);
+    //         camelizedData[newKey] = data[key];
+    //     }
+    //     return camelizedData;
+    // }
+
+
+    protected camelizeProperties<T extends Record<string, unknown>, J extends Record<string, unknown>>(data: T): J {
+        let camelizedData: J = {} as J;
         for (const key of Object.keys(data)) {
             const newKey: string = this.camelize(key);
-            camelizedData[newKey] = data[key];
+            camelizedData = Object.assign(camelizedData, { [newKey]: data[key] })
         }
         return camelizedData;
     }
-
+    
     //abstract getEntityName(): string;
     //abstract getKeys(): unknown;
     //abstract getAssociations(): Array<association>;
