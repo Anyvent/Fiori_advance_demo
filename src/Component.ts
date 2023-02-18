@@ -72,7 +72,7 @@ export default class Component extends UIComponent {
 		manifest: "json"
 	};
 
-	
+
 
 	public init(): void {
 		// this.errorHandler = new ErrorHandler(this);

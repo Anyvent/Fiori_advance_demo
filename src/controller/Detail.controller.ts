@@ -5,7 +5,6 @@ import UI5Event from "sap/ui/base/Event";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import { inputParameters } from "./App.controller";
 import State from "../state/State";
-import Component from "../Component";
 
 /**
  * @namespace be.thevaluechain.fioriadvanced.controller
@@ -15,7 +14,7 @@ export default class Detail extends BaseController {
 	private state: State;
 
 	public onInit(): void {
-		const component = (this.getOwnerComponent() as Component);
+		const component = this.getComponent();
 		this.state = component.state;
 
 		//Enable navigation to the detail page
