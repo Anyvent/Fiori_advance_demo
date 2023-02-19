@@ -9,7 +9,7 @@ import Sorter from "sap/ui/model/Sorter";
  * ===============================================================
  */
  type odataMethods = "read" | "create" | "update" | "remove";
- type parameters<T> = {
+ export type Parameters<T> = {
      context?: Record<string, unknown>;
      urlParameters?: Record<string, string>;
      filters?: Filter[];

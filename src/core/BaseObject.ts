@@ -77,6 +77,10 @@ export default abstract class BaseObject extends UI5BaseObject {
         }).replace(/\s+/g, '');
     }
 
+    protected capitalizeFirstLetter(str: string):string{
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     // protected camelizeProperties(data: any): any {
     //     const camelizedData: any = {};
     //     for (const key of Object.keys(data)) {
@@ -95,7 +99,16 @@ export default abstract class BaseObject extends UI5BaseObject {
         }
         return camelizedData;
     }
-    
+
+    protected capitalizeProperties<T extends Record<string, unknown>, J extends Record<string, unknown>>(data: T): J {
+        let capitalizedData: J = {} as J;
+        for (const key of Object.keys(data)) {
+            const newKey: string = this.capitalizeFirstLetter(key);
+            capitalizedData = Object.assign(capitalizedData, { [newKey]: data[key] })
+        }
+        return capitalizedData;
+    }
+
     //abstract getEntityName(): string;
     //abstract getKeys(): unknown;
     //abstract getAssociations(): Array<association>;

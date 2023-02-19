@@ -1,13 +1,13 @@
 import BaseState from "../core/BaseState";
 import Service from "../service/Service";
-import Person from "../model/Person";
 import { PersonEnity } from "../type/Backend";
+import { Person } from "../model/Person";
 import { ViewProperties } from "../type/Frontend";
 
 
 type stateData = {
     detailView: ViewProperties,
-    Person: Person
+    person: Person
 }
 
 /**
@@ -24,23 +24,30 @@ export default class State extends BaseState {
                 busy : false,
 			    delay: 0
             },
-            Person: new Person()
+            person: null
         }
     }
 
 
 
     public async getPersonById(id: string): Promise<Person> {
+        // this.setDetailScreenBusy(true);
+        // const personData = await this.getService().getPersonById(id);
+        // this.getData().Person = new Person(personData.data);
+        // this.setDetailScreenBusy(false);
+        // this.updateModel();
+        // return this.getData().Person;
+
         this.setDetailScreenBusy(true);
         const personData = await this.getService().getPersonById(id);
-        this.getData().Person = new Person(personData.data);
+        this.data.person = new Person(personData);
         this.setDetailScreenBusy(false);
         this.updateModel();
-        return this.getData().Person;
+        return this.data.person;
     }
 
     private setPerson(equipmentoData: Person) {
-        this.getData().Person = new Person(equipmentoData);
+        // this.getData().person = new Person(equipmentoData);
 
     }
 
@@ -54,10 +61,15 @@ export default class State extends BaseState {
     }
     
 
-    // public createPerson():  {
-    //    this.data.person = new Person();
+    public createPerson(): Person  {
+       let person = new Person();
+       person.addEmptySkill();
 
-    // }
+       this.data.person = person;
+       this.updateModel();
+       return person;
+
+    }
 
   
  

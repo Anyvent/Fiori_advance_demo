@@ -1,7 +1,7 @@
 import BaseController from "./BaseController";
 import { system } from "sap/ui/Device";
 import UI5Event from "sap/ui/base/Event";
-import AppComponent, { UIState } from "../Component";
+import MyComponent, { UIState } from "../Component";
 // import Component from "sap/ui/core/Component";
 import List from "sap/m/List";
 import JSONModel from "sap/ui/model/json/JSONModel";
@@ -17,14 +17,15 @@ import State from "../state/State";
  */
 export default class Master extends BaseController {
 	private descendingSort = false;
-	private state: State;
+	private _state: State;
 
 	public async onInit(): Promise<void> {
 		const component = this.getComponent() ;
-		this.state = component.state;
+		this._state = component.state;
 
-
-	
+		let person = await this._state.getPersonById("db42861d-e85a-1eed-aac1-a05b984d8ea2");
+		const json = person.getJSON();
+		debugger;
 
 	}
 
