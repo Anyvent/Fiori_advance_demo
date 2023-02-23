@@ -25,7 +25,6 @@ export default class Master extends BaseController {
 
 		let person = await this._state.getPersonById("db42861d-e85a-1eed-aac1-a05b984d8ea2");
 		const json = person.getJSON();
-		debugger;
 
 	}
 
@@ -38,6 +37,7 @@ export default class Master extends BaseController {
 
 	private async onCreateNew(event: UI5Event) {
 		const id = "0";
+		this._state.makeNewPerson();
 		this.navigateToDetail(id);
 	}
 

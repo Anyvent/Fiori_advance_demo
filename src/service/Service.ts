@@ -55,4 +55,9 @@ export default class Service extends BaseService {
         const personEntity: PersonEnity = this.camelizeProperties(oDataPerson.data);
         return personEntity;
     }
+
+    public async createPerson(oData: Record<string, unknown>){
+        return await this.odata("/Person").post(oData);
+    }
+
 }

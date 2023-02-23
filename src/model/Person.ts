@@ -7,7 +7,7 @@ import Skill from "./Skill";
  */
 export class Person extends BaseObject implements PersonEnity {
 
-    private _skills: Skill[];
+    private _skills: Skill[] = [];
 
     constructor(data?: PersonEnity) {
         super(data); //should copy the oData values to the object
@@ -34,7 +34,15 @@ export class Person extends BaseObject implements PersonEnity {
     }
 
     public getJSON():Record<string, unknown> {
-        return this.capitalizeProperties(this as PersonEnity);
+        // return this.capitalizeProperties(this as PersonEnity);
+
+        return {
+        //   personId: this.personId, 
+          FirstName: this.firstName,
+          LastName: this.lastName,
+          BirthDate: this.birthDate
+          
+        }     
 
                
 

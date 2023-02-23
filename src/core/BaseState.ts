@@ -1,8 +1,6 @@
 import JSONModel from "sap/ui/model/json/JSONModel";
 import Log, { Level } from "sap/base/Log";
 import BaseObject from "./BaseObject";
-import BaseServiceV4 from "./BaseServiceV4";
-import BaseServiceV2 from "./BaseServiceV2";
 import { ValueState } from "sap/ui/core/library";
 import Message from "sap/ui/core/message/Message";
 // import ODataModel from "sap/ui/model/odata/v4/ODataModel";
@@ -18,7 +16,7 @@ type MatchingObject = {
  * @namespace be.thevaluechain.fioriadvanced.core
  */
 export default abstract class BaseState extends BaseObject {
-    protected service: BaseServiceV4 | BaseServiceV2;
+    protected service: Service;
     protected data: any;//Record<string, BaseObject | Array<BaseObject>>;
     private model: JSONModel;
     private logger: Log;

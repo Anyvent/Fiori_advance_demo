@@ -101,11 +101,13 @@ export default abstract class BaseObject extends UI5BaseObject {
     }
 
     protected capitalizeProperties<T extends Record<string, unknown>, J extends Record<string, unknown>>(data: T): J {
+
         let capitalizedData: J = {} as J;
         for (const key of Object.keys(data)) {
             const newKey: string = this.capitalizeFirstLetter(key);
             capitalizedData = Object.assign(capitalizedData, { [newKey]: data[key] })
         }
+        delete capitalizedData['Busy'];
         return capitalizedData;
     }
 

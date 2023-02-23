@@ -46,11 +46,8 @@ export default class State extends BaseState {
         return this.data.person;
     }
 
-    private setPerson(equipmentoData: Person) {
-        // this.getData().person = new Person(equipmentoData);
-
-    }
-
+   
+ 
     public getData(): stateData {
         return this.data;
     }
@@ -61,14 +58,21 @@ export default class State extends BaseState {
     }
     
 
-    public createPerson(): Person  {
+    public makeNewPerson(): Person  {
        let person = new Person();
        person.addEmptySkill();
 
        this.data.person = person;
        this.updateModel();
+
+       this.createPerson(person)
+
        return person;
 
+    }
+
+    public createPerson(person: Person){
+        this.service.createPerson(person.getJSON());
     }
 
   
